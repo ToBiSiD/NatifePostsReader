@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct PostDetails : Codable {
+struct PostDetails: Codable {
     let postId: String
-    let timeshamp: Int
+    let timeshamp: TimeInterval
     let title: String
     let text: String
     let postImage: String

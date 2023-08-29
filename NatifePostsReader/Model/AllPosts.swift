@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct AllPosts : Codable {
+struct AllPosts: Codable {
     let posts: [Post]
 }
