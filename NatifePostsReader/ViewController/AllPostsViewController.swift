@@ -26,6 +26,11 @@ class AllPostsViewController: UIViewController {
         loadPosts()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        expandedCells.removeAll()
+        tableView.reloadData()
+    }
+    
     private func loadPosts() {
         postReaderAPI.fetchPosts { result in
             DispatchQueue.main.async {
