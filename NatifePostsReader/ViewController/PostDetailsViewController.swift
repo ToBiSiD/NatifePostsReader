@@ -15,13 +15,13 @@ class PostDetailsViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     
     var postId: Int?
-    private let readerAPI = PostReaderAPI()
+    private let postReaderAPI = PostReaderAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let postId = postId {
-            readerAPI.fetchPostDetails(postId: postId) { result in
+            postReaderAPI.fetchPostDetails(postId: postId) { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let postInfo):

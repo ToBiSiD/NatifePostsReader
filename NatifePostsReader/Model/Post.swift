@@ -23,19 +23,8 @@ struct Post: Codable {
     }
     
     var postedDateText: String {
-        let postData = Date(timeIntervalSince1970: timeshamp)
-        let difference = postData.datesDifference(Date())
-        
-        if let postedDays = difference.day, postedDays < 30{
-            switch postedDays {
-            case 1: return "posted yesturday"
-            case 2: return "posted day before yesterday"
-            default : return "posted \(postedDays)s days ago"
-            }
-        } else {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "HH:mm, d MMM y"
-            return "posted at \(postData.formatted())"
-        }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMM y, HH:mm"
+        return formatter.string(from: Date(timeIntervalSince1970: timeshamp))
     }
 }
