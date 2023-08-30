@@ -35,7 +35,6 @@ struct Post: Codable {
         } else {
             let formatter = DateFormatter()
             formatter.dateFormat = "HH:mm, d MMM y"
-            return formatter.string(from: postData)
             return "posted at \(postData.formatted())"
         }
     }

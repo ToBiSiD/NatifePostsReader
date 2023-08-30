@@ -15,4 +15,9 @@ struct Constants {
     
     static let expandText: String = "Expand"
     static let collapseText: String = "Collapse"
+    
+    static let showPostDetails: String = "ShowPostDetails"
+    
+    static let postsLink = "https://raw.githubusercontent.com/anton-natife/jsons/master/api/main.json"
+    static let postDetailsLink = "https://raw.githubusercontent.com/anton-natife/jsons/master/api/posts/"
 }

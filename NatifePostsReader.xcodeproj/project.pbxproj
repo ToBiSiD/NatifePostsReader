@@ -15,13 +15,14 @@
 		D2096D772A9E2E5B0051CCBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2096D752A9E2E5B0051CCBB /* LaunchScreen.storyboard */; };
 		D2096D802A9E30270051CCBB /* PostReaderAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2096D7F2A9E30270051CCBB /* PostReaderAPI.swift */; };
 		D2096D832A9E31D20051CCBB /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2096D822A9E31D20051CCBB /* Post.swift */; };
-		D2096D852A9E33460051CCBB /* AllPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2096D842A9E33460051CCBB /* AllPosts.swift */; };
+		D2096D852A9E33460051CCBB /* PostsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2096D842A9E33460051CCBB /* PostsContainer.swift */; };
 		D2096D872A9E352D0051CCBB /* PostDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2096D862A9E352D0051CCBB /* PostDetails.swift */; };
-		D2096D8A2A9E378B0051CCBB /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2096D892A9E378B0051CCBB /* PostsViewModel.swift */; };
 		D2096D8F2A9E47690051CCBB /* PostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2096D8E2A9E47690051CCBB /* PostView.xib */; };
 		D2096D912A9E4E0B0051CCBB /* PostCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2096D902A9E4E0B0051CCBB /* PostCellView.swift */; };
 		D236E39D2A9E5D9F004BDABF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D236E39C2A9E5D9F004BDABF /* Constants.swift */; };
 		D236E3A02A9E7614004BDABF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D236E39F2A9E7614004BDABF /* Extensions.swift */; };
+		D236E3A22A9E81F7004BDABF /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D236E3A12A9E81F7004BDABF /* PostDetailsViewController.swift */; };
+		D2E4398F2A9F5FEB00E489F6 /* PostInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E4398E2A9F5FEB00E489F6 /* PostInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,13 +36,14 @@
 		D2096D782A9E2E5B0051CCBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2096D7F2A9E30270051CCBB /* PostReaderAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostReaderAPI.swift; sourceTree = "<group>"; };
 		D2096D822A9E31D20051CCBB /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		D2096D842A9E33460051CCBB /* AllPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPosts.swift; sourceTree = "<group>"; };
+		D2096D842A9E33460051CCBB /* PostsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsContainer.swift; sourceTree = "<group>"; };
 		D2096D862A9E352D0051CCBB /* PostDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetails.swift; sourceTree = "<group>"; };
-		D2096D892A9E378B0051CCBB /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 		D2096D8E2A9E47690051CCBB /* PostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostView.xib; sourceTree = "<group>"; };
 		D2096D902A9E4E0B0051CCBB /* PostCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellView.swift; sourceTree = "<group>"; };
 		D236E39C2A9E5D9F004BDABF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D236E39F2A9E7614004BDABF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D236E3A12A9E81F7004BDABF /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
+		D2E4398E2A9F5FEB00E489F6 /* PostInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +79,6 @@
 				D236E39E2A9E75F4004BDABF /* Utils */,
 				D2096D8D2A9E45D20051CCBB /* ViewController */,
 				D2096D8B2A9E44F80051CCBB /* Model */,
-				D2096D882A9E37710051CCBB /* ViewModel */,
 				D2096D8C2A9E45090051CCBB /* View */,
 				D2096D7E2A9E30160051CCBB /* API */,
 				D2096D6A2A9E2E5B0051CCBB /* AppDelegate.swift */,
@@ -97,20 +98,13 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		D2096D882A9E37710051CCBB /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				D2096D892A9E378B0051CCBB /* PostsViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		D2096D8B2A9E44F80051CCBB /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				D2096D822A9E31D20051CCBB /* Post.swift */,
-				D2096D842A9E33460051CCBB /* AllPosts.swift */,
+				D2096D842A9E33460051CCBB /* PostsContainer.swift */,
 				D2096D862A9E352D0051CCBB /* PostDetails.swift */,
+				D2E4398E2A9F5FEB00E489F6 /* PostInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -129,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				D2096D6E2A9E2E5B0051CCBB /* AllPostsViewController.swift */,
+				D236E3A12A9E81F7004BDABF /* PostDetailsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -158,6 +153,8 @@
 			dependencies = (
 			);
 			name = NatifePostsReader;
+			packageProductDependencies = (
+			);
 			productName = NatifePostsReader;
 			productReference = D2096D672A9E2E5B0051CCBB /* NatifePostsReader.app */;
 			productType = "com.apple.product-type.application";
@@ -186,6 +183,9 @@
 				Base,
 			);
 			mainGroup = D2096D5E2A9E2E5B0051CCBB;
+			packageReferences = (
+				D236E3A52A9E8564004BDABF /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = D2096D682A9E2E5B0051CCBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -215,14 +215,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2096D6F2A9E2E5B0051CCBB /* AllPostsViewController.swift in Sources */,
-				D2096D852A9E33460051CCBB /* AllPosts.swift in Sources */,
+				D2E4398F2A9F5FEB00E489F6 /* PostInfo.swift in Sources */,
+				D2096D852A9E33460051CCBB /* PostsContainer.swift in Sources */,
 				D2096D802A9E30270051CCBB /* PostReaderAPI.swift in Sources */,
 				D2096D6B2A9E2E5B0051CCBB /* AppDelegate.swift in Sources */,
-				D2096D8A2A9E378B0051CCBB /* PostsViewModel.swift in Sources */,
 				D236E39D2A9E5D9F004BDABF /* Constants.swift in Sources */,
 				D2096D872A9E352D0051CCBB /* PostDetails.swift in Sources */,
 				D2096D912A9E4E0B0051CCBB /* PostCellView.swift in Sources */,
 				D2096D6D2A9E2E5B0051CCBB /* SceneDelegate.swift in Sources */,
+				D236E3A22A9E81F7004BDABF /* PostDetailsViewController.swift in Sources */,
 				D236E3A02A9E7614004BDABF /* Extensions.swift in Sources */,
 				D2096D832A9E31D20051CCBB /* Post.swift in Sources */,
 			);
@@ -442,6 +443,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D236E3A52A9E8564004BDABF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = D2096D5F2A9E2E5B0051CCBB /* Project object */;
 }

@@ -6,16 +6,14 @@
 //
 
 import UIKit
-import Combine
 
 class AllPostsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var text: UILabel!
-    
-    let postsViewModel = PostsViewModel()
+    @IBOutlet weak var errorText: UILabel!
+
+    private let postReaderAPI = PostReaderAPI()
     private var posts: [Post] = []
     private var expandedCells: IndexSet = []
-    private var cancelable = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,25 +22,31 @@ class AllPostsViewController: UIViewController {
         tableView.delegate = self
         tableView.register(UINib(nibName: Constants.postCellViewName, bundle: nil), forCellReuseIdentifier: Constants.postCellIdentifier)
         
-        binding()
+        loadPosts()
     }
     
-    func binding(){
-        postsViewModel.$errorText
-            .sink { [weak self] currentError in
-                print(currentError)
-               // self?.text.text = currentError
-            }
-            .store(in: &cancelable)
-        
-        postsViewModel.$posts
-            .sink { [weak self] allPosts in
-                if let allPosts = allPosts {
-                    self?.posts = allPosts.posts
-                    self?.tableView.reloadData()
+    func loadPosts() {
+        postReaderAPI.fetchPosts { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let allpPosts):
+                    self.posts = allpPosts.posts
+                    self.errorText.isHidden = true
+                    self.tableView.reloadData()
+                case .failure(let error):
+                    self.errorText.text = error.localizedDescription
+                    self.errorText.isHidden = false
                 }
             }
-            .store(in: &cancelable)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! PostDetailsViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.postId = posts[indexPath.row].postId
+        }
     }
 }
 
@@ -69,6 +73,10 @@ extension AllPostsViewController : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: Constants.showPostDetails, sender: self)
     }
 }
 

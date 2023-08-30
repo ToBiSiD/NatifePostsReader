@@ -8,29 +8,21 @@
 import Foundation
 
 class PostReaderAPI {
-    private let postsLink = "https://raw.githubusercontent.com/anton-natife/jsons/master/api/main.json"
-    private let postDetailsLink = "https://raw.githubusercontent.com/anton-natife/jsons/master/api/posts/"
+    func fetchPosts(completion: @escaping (Result<PostsContainer, Error>) -> Void) {
+        fetchData(with: Constants.postsLink, completion: completion)
+    }
     
-    func fetchPosts(completion: @escaping (Result<AllPosts, Error>) -> Void) {
-        guard let url = URL(string: postsLink) else {
+    func fetchPostDetails(postId: Int, completion: @escaping (Result<PostInfo, Error>) -> Void) {
+        let fullLink = "\(Constants.postDetailsLink)\(postId).json"
+        fetchData(with: fullLink, completion: completion)
+    }
+    
+    private func fetchData<T: Codable>(with urlString: String, completion: @escaping (Result<T, Error>) -> Void) {
+        guard let url = URL(string: urlString) else {
             completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
             return
         }
         
-        fetchData(with: url, completion: completion)
-    }
-    
-    func fetchPostDetails(postId: String, completion: @escaping (Result<PostDetails, Error>) -> Void) {
-        let fullLink = postDetailsLink + postId + ".json"
-        guard let url = URL(string: fullLink) else {
-            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
-            return
-        }
-        
-        fetchData(with: url, completion: completion)
-    }
-    
-    private func fetchData<T: Codable>(with url: URL, completion: @escaping (Result<T, Error>) -> Void) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(.failure(error))
@@ -42,6 +34,7 @@ class PostReaderAPI {
                     let decodeData = try decoder.decode(T.self, from: data)
                     completion(.success(decodeData))
                 } catch {
+                    print(String(describing: error))
                     completion(.failure(error))
                 }
             }
