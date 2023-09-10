@@ -11,7 +11,6 @@ class AllPostsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var errorText: UILabel!
     
-    private let postReaderAPI = PostReaderAPI()
     private var posts: [Post] = []
     private var sortedPosts: [Post] = []
     private var expandedCells: IndexSet = []
@@ -32,14 +31,12 @@ class AllPostsViewController: UIViewController {
     }
     
     private func loadPosts() {
-        postReaderAPI.fetchPosts { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let allPosts):
-                    self.setupData(allPosts: allPosts.posts)
-                case .failure(let error):
-                    self.showErrorText(error.localizedDescription)
-                }
+        Task {
+            do {
+                let postsContainer = try await PostReaderAPI.shared.fetchPosts()
+                self.setupData(allPosts: postsContainer.posts)
+            } catch {
+                showErrorText(error.localizedDescription)
             }
         }
     }
@@ -59,7 +56,7 @@ class AllPostsViewController: UIViewController {
         errorText.isHidden = false
     }
     
-    func addSortButton() {
+    private func addSortButton() {
         let sortButton = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(showSortingOptions))
         
         navigationItem.rightBarButtonItem = sortButton
